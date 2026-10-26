@@ -7,3 +7,7 @@ build_gateway/
 build_detector/
 build_wired_detector/
 site/
+build_detector_xiao/
+build_detector_xiao_wifi/
+recordings/
+__pycache__/

@@ -1,0 +1,4 @@
+# Optional tools only. wifi_listener.py uses Python standard library only.
+numpy>=1.24
+matplotlib>=3.6
+pyserial>=3.5

@@ -15,7 +15,12 @@ if(CONFIG_BATEAR_ROLE_DETECTOR OR CONFIG_BATEAR_ROLE_GATEWAY)
 endif()
 
 if(CONFIG_BATEAR_ROLE_DETECTOR)
-    list(APPEND SRCS "audio_task.c" "audio_processor.c" "lora_task.cpp" "battery.c")
+    list(APPEND SRCS "audio_task.c" "audio_processor.c")
+    if(CONFIG_TRIPWIRE_WIFI_DETECTOR)
+        list(APPEND SRCS "wifi_detector.c")
+    else()
+        list(APPEND SRCS "lora_task.cpp" "battery.c")
+    endif()
 endif()
 
 if(CONFIG_BATEAR_ROLE_GATEWAY)

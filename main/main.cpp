@@ -30,7 +30,11 @@
 #ifdef CONFIG_BATEAR_ROLE_DETECTOR
 #include "drone_detector.h"
 #include "audio_task.h"
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+#include "wifi_detector.h"
+#else
 #include "lora_task.h"
+#endif
 #endif
 
 #ifdef CONFIG_BATEAR_ROLE_GATEWAY
@@ -84,6 +88,9 @@ extern "C" void app_main(void)
         return;
     }
 
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+    wifi_detector_init();
+#endif
     static TaskHandle_t audio_h, lora_h;
 
     BaseType_t ret = xTaskCreatePinnedToCore(
@@ -97,7 +104,11 @@ extern "C" void app_main(void)
     }
 
     ret = xTaskCreatePinnedToCore(
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+        WifiDetectorTask, "WifiDetectorTask",
+#else
         LoRaTask, "LoRaTask",
+#endif
         4 * 1024 / sizeof(StackType_t),
         NULL, configMAX_PRIORITIES - 4,
         &lora_h, 0);
@@ -107,7 +118,11 @@ extern "C" void app_main(void)
         return;
     }
 
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+    ESP_LOGI(TAG, "Wi-Fi detector running — AudioTask(Core1) + WifiDetectorTask(Core0)");
+#else
     ESP_LOGI(TAG, "Detector running — AudioTask(Core1) + LoRaTask(Core0)");
+#endif
 
 #elif defined(CONFIG_BATEAR_ROLE_GATEWAY) && defined(CONFIG_TRIPWIRE_EDGE)
 

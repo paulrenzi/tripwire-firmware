@@ -1,0 +1,512 @@
+{
+  "test": "indoor-replay-2026-10-24",
+  "recorded_seconds": 138.752,
+  "configurations": 180,
+  "c_harmonic_parity": {
+    "frames_checked": 2168,
+    "harmonic_boolean_mismatches": 0,
+    "max_confidence_absolute_error": 1.5418667298483513e-07
+  },
+  "relaxed_harmonic_c_parity": {
+    "frames_checked": 2168,
+    "harmonic_boolean_mismatches": 0,
+    "max_confidence_absolute_error": 1.7260889706438576e-07
+  },
+  "diagnostics": {
+    "rms_gate_pass_fraction": 1.0,
+    "snr_pass_fraction": 0.5650369003690037,
+    "h2_pass_fraction": 0.2357011070110701,
+    "h3_pass_fraction": 0.24861623616236161,
+    "all_harmonic_checks_pass_fraction": 0.04474169741697417,
+    "default_max_smoothed_confidence": 0.24233043523642672,
+    "median_live_vs_replay_dbfs_error": 0.012964109999888507,
+    "max_live_vs_replay_dbfs_error": 0.09478439899215374,
+    "live_alarms": 0
+  },
+  "baseline": {
+    "harmonic_scale": 1.0,
+    "min_snr": 4.0,
+    "confidence_on": 0.3,
+    "confidence_off": 0.18,
+    "rms_gate": 3e-05,
+    "sustain_on_frames": 2,
+    "plays_heard": 0,
+    "quiet_alarm_seconds": 0.0,
+    "background_alarm_seconds": 0.0,
+    "quiet_alarm_starts": 0,
+    "total_alarm_starts": 0,
+    "plays": [
+      {
+        "clip": "mini",
+        "gain_db": -24,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "mini",
+        "gain_db": -12,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "mini",
+        "gain_db": -6,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -24,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -12,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -6,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      }
+    ]
+  },
+  "confidence_only": [
+    {
+      "harmonic_scale": 1.0,
+      "min_snr": 4.0,
+      "confidence_on": 0.3,
+      "confidence_off": 0.18,
+      "rms_gate": 3e-05,
+      "sustain_on_frames": 2,
+      "plays_heard": 0,
+      "quiet_alarm_seconds": 0.0,
+      "background_alarm_seconds": 0.0,
+      "quiet_alarm_starts": 0,
+      "total_alarm_starts": 0,
+      "plays": [
+        {
+          "clip": "mini",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -12,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -12,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        }
+      ]
+    },
+    {
+      "harmonic_scale": 1.0,
+      "min_snr": 4.0,
+      "confidence_on": 0.2,
+      "confidence_off": 0.12,
+      "rms_gate": 3e-05,
+      "sustain_on_frames": 2,
+      "plays_heard": 1,
+      "quiet_alarm_seconds": 0.0,
+      "background_alarm_seconds": 0.0,
+      "quiet_alarm_starts": 0,
+      "total_alarm_starts": 1,
+      "plays": [
+        {
+          "clip": "mini",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -12,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -12,
+          "heard": true,
+          "new_alarms": 1,
+          "active_seconds": 0.512
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        }
+      ]
+    },
+    {
+      "harmonic_scale": 1.0,
+      "min_snr": 4.0,
+      "confidence_on": 0.1,
+      "confidence_off": 0.06,
+      "rms_gate": 3e-05,
+      "sustain_on_frames": 2,
+      "plays_heard": 1,
+      "quiet_alarm_seconds": 0.0,
+      "background_alarm_seconds": 0.0,
+      "quiet_alarm_starts": 0,
+      "total_alarm_starts": 2,
+      "plays": [
+        {
+          "clip": "mini",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -12,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -12,
+          "heard": true,
+          "new_alarms": 1,
+          "active_seconds": 0.64
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        }
+      ]
+    },
+    {
+      "harmonic_scale": 1.0,
+      "min_snr": 4.0,
+      "confidence_on": 0.05,
+      "confidence_off": 0.03,
+      "rms_gate": 3e-05,
+      "sustain_on_frames": 2,
+      "plays_heard": 1,
+      "quiet_alarm_seconds": 0.512,
+      "background_alarm_seconds": 0.0,
+      "quiet_alarm_starts": 1,
+      "total_alarm_starts": 4,
+      "plays": [
+        {
+          "clip": "mini",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -12,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -12,
+          "heard": true,
+          "new_alarms": 2,
+          "active_seconds": 1.728
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        }
+      ]
+    },
+    {
+      "harmonic_scale": 1.0,
+      "min_snr": 4.0,
+      "confidence_on": 0.02,
+      "confidence_off": 0.012,
+      "rms_gate": 3e-05,
+      "sustain_on_frames": 2,
+      "plays_heard": 2,
+      "quiet_alarm_seconds": 0.512,
+      "background_alarm_seconds": 0.0,
+      "quiet_alarm_starts": 1,
+      "total_alarm_starts": 5,
+      "plays": [
+        {
+          "clip": "mini",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "mini",
+          "gain_db": -12,
+          "heard": true,
+          "new_alarms": 1,
+          "active_seconds": 0.512
+        },
+        {
+          "clip": "mini",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -24,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -12,
+          "heard": true,
+          "new_alarms": 2,
+          "active_seconds": 1.728
+        },
+        {
+          "clip": "fpv",
+          "gain_db": -6,
+          "heard": false,
+          "new_alarms": 0,
+          "active_seconds": 0.0
+        }
+      ]
+    }
+  ],
+  "best_without_quiet_alarms": {
+    "harmonic_scale": 1.0,
+    "min_snr": 4.0,
+    "confidence_on": 0.2,
+    "confidence_off": 0.12,
+    "rms_gate": 3e-05,
+    "sustain_on_frames": 2,
+    "plays_heard": 1,
+    "quiet_alarm_seconds": 0.0,
+    "background_alarm_seconds": 0.0,
+    "quiet_alarm_starts": 0,
+    "total_alarm_starts": 1,
+    "plays": [
+      {
+        "clip": "mini",
+        "gain_db": -24,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "mini",
+        "gain_db": -12,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "mini",
+        "gain_db": -6,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -24,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -12,
+        "heard": true,
+        "new_alarms": 1,
+        "active_seconds": 0.512
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -6,
+        "heard": false,
+        "new_alarms": 0,
+        "active_seconds": 0.0
+      }
+    ]
+  },
+  "best_play_coverage": {
+    "harmonic_scale": 0.5,
+    "min_snr": 4.0,
+    "confidence_on": 0.05,
+    "confidence_off": 0.03,
+    "rms_gate": 3e-05,
+    "sustain_on_frames": 2,
+    "plays_heard": 6,
+    "quiet_alarm_seconds": 4.864,
+    "background_alarm_seconds": 1.408,
+    "quiet_alarm_starts": 6,
+    "total_alarm_starts": 22,
+    "plays": [
+      {
+        "clip": "mini",
+        "gain_db": -24,
+        "heard": true,
+        "new_alarms": 3,
+        "active_seconds": 1.664
+      },
+      {
+        "clip": "mini",
+        "gain_db": -12,
+        "heard": true,
+        "new_alarms": 2,
+        "active_seconds": 2.112
+      },
+      {
+        "clip": "mini",
+        "gain_db": -6,
+        "heard": true,
+        "new_alarms": 1,
+        "active_seconds": 1.856
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -24,
+        "heard": true,
+        "new_alarms": 2,
+        "active_seconds": 1.408
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -12,
+        "heard": true,
+        "new_alarms": 3,
+        "active_seconds": 2.88
+      },
+      {
+        "clip": "fpv",
+        "gain_db": -6,
+        "heard": true,
+        "new_alarms": 3,
+        "active_seconds": 3.136
+      }
+    ]
+  },
+  "source_clip_checks": [
+    {
+      "clip": "mini",
+      "default_alarm_starts": 1,
+      "harmonic_ok_fraction": 0.7272727272727273,
+      "max_smoothed_confidence": 0.8122770107941197
+    },
+    {
+      "clip": "fpv",
+      "default_alarm_starts": 2,
+      "harmonic_ok_fraction": 0.17647058823529413,
+      "max_smoothed_confidence": 0.37886284968343154
+    }
+  ],
+  "limits": [
+    "Same-session exploratory sweep, not held-out validation.",
+    "PCM16 recordings omit the low 8 bits of the original 24-bit microphone data.",
+    "NumPy FFT differs in rounding from ESP-DSP; harmonic scan checked against actual C.",
+    "EMA/alarm initialized at recording start; original pre-recording state unknown.",
+    "Playback labels use approximate receiver UTC; 0.75s excluded from both phase edges.",
+    "Alarm occupancy can carry from preceding phases; starts reported separately.",
+    "Indoor replay is not a range or real-flight qualification."
+  ],
+  "source_sha256": {
+    "main/audio_processor.c": "38c1e0cfee7ae442b26163e027fa1a5c0429566a38471f974385da2df074ea05",
+    "main/audio_task.c": "d55cff30fa2b1be5b31d33b125604ad5e3c75ef6a80b34e52298e3f79ba35575"
+  },
+  "physical_speaker_distance_ft": 12
+}

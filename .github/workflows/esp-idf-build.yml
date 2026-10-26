@@ -32,6 +32,8 @@ jobs:
             flash_size: 8MB
           - role: detector_xiao
             flash_size: 8MB
+          - role: detector_xiao_wifi
+            flash_size: 8MB
           - role: gateway_xiao
             flash_size: 8MB
 
@@ -218,3 +220,4 @@ jobs:
             merged_edge.bin
             merged_detector_xiao.bin
             merged_gateway_xiao.bin
+            merged_detector_xiao_wifi.bin

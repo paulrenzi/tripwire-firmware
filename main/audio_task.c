@@ -17,6 +17,9 @@
 #include "esp_timer.h"
 #include "driver/i2s_std.h"
 #include "sdkconfig.h"
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+#include "wifi_detector.h"
+#endif
 
 #if CONFIG_BATEAR_ROLE_WIRED_DETECTOR
 #include "tf_recorder.h"
@@ -66,6 +69,15 @@ static int16_t __attribute__((aligned(16))) s_pcm16[FRAME_SAMPLES];
 #endif
 
 static i2s_chan_handle_t s_rx = NULL;
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+static uint32_t s_dma_overflows;
+static bool mic_overflow(i2s_chan_handle_t handle, i2s_event_data_t *event, void *ctx)
+{
+    (void)handle; (void)event; (void)ctx;
+    __atomic_fetch_add(&s_dma_overflows, 1, __ATOMIC_RELAXED);
+    return false;
+}
+#endif
 
 /* IEC 61672 A-weighting, as a power gain, per PSD bin. */
 static float s_aw2[AUDIO_PROC_PSD_BINS];
@@ -135,6 +147,11 @@ static esp_err_t i2s_microphone_init(void)
         s_rx = NULL;
         return err;
     }
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+    i2s_event_callbacks_t callbacks = {.on_recv_q_ovf = mic_overflow};
+    err = i2s_channel_register_event_callback(s_rx, &callbacks, NULL);
+    if (err != ESP_OK) return err;
+#endif
     return i2s_channel_enable(s_rx);
 }
 
@@ -251,6 +268,8 @@ void AudioTask(void *pvParameters)
     ESP_LOGI(TAG, "I2S OK — port0 STEREO→mono BCLK=%d WS=%d DIN=%d",
              PIN_I2S_BCLK, PIN_I2S_WS, PIN_I2S_DIN);
 
+    build_a_weighting();
+
     int  sustain_on      = 0;
     int  sustain_off     = 0;
     bool alarm           = false;
@@ -264,6 +283,9 @@ void AudioTask(void *pvParameters)
             continue;
         }
 
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+        wifi_detector_pcm(s_raw, FRAME_SAMPLES);
+#endif
         if (!mic_diag_logged) {
             log_pcm_int32_span(s_raw, FRAME_SAMPLES, raw_i32_rms_norm(s_raw, FRAME_SAMPLES), "first frame");
             mic_diag_logged = true;
@@ -291,6 +313,7 @@ void AudioTask(void *pvParameters)
 
         const float *psd = audio_processor_last_psd();
         const float rms  = audio_processor_last_rms();
+        const float weighted_share = a_weighted_share(psd);
 
         /* Once a second, the A-weighted level at the mic: the logger reads it
          * over USB and sets the mic phone's meter from it. */
@@ -298,10 +321,8 @@ void AudioTask(void *pvParameters)
             static double  lvl_a = 0.0, lvl_z = 0.0;
             static int     lvl_n = 0;
             static int64_t lvl_t0 = 0;
-            static bool    lvl_ready = false;
-            if (!lvl_ready) { build_a_weighting(); lvl_ready = true; }
             const double ms = (double)rms * (double)rms;
-            lvl_a += ms * a_weighted_share(psd);
+            lvl_a += ms * weighted_share;
             lvl_z += ms;
             lvl_n++;
             const int64_t t = esp_timer_get_time();
@@ -443,6 +464,18 @@ void AudioTask(void *pvParameters)
             }
         }
 
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+        /* One fresh level/state update per 1024-sample frame (64 ms).
+         * Serial diagnostics retain their one-second averaging interval. */
+        const double frame_power = (double)rms * rms;
+        const double weighted_power = frame_power * weighted_share;
+        wifi_detector_level(
+            weighted_power > 0.0 ? 10.0 * log10(weighted_power) + LEVEL_DB_AT_WIN_RMS1 : 0.0,
+            frame_power > 0.0 ? 10.0 * log10(frame_power) + LEVEL_DB_AT_WIN_RMS1 : 0.0,
+            frame_power > 0.0 ? 10.0 * log10(frame_power) : -120.0, alarm,
+            __atomic_load_n(&s_dma_overflows, __ATOMIC_RELAXED));
+#endif
+
         static int64_t last_cal_us = 0;
         const int64_t now_us       = esp_timer_get_time();
         if (alarm && now_us - last_cal_us > 1000000LL) {
@@ -467,6 +500,8 @@ void AudioTask(void *pvParameters)
         }
 #endif
 
+#ifndef CONFIG_TRIPWIRE_WIFI_DETECTOR
         vTaskDelay(pdMS_TO_TICKS(HOP_MS));
+#endif
     }
 }

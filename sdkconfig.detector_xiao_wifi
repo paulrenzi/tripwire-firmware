@@ -1,0 +1,21 @@
+# Board: Seeed XIAO ESP32S3 + Wio-SX1262 kit (native USB, no OLED)
+CONFIG_BATEAR_BOARD_XIAO_S3_WIO_SX1262=y
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+
+# The XIAO has no UART bridge: logs and the config console go over USB
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+
+# Role
+CONFIG_BATEAR_ROLE_DETECTOR=y
+CONFIG_BATEAR_DEVICE_ID=1
+
+# Network (must match between all detectors and gateway)
+CONFIG_BATEAR_NET_KEY="DEADBEEFCAFEBABE13374200F00DAA55"
+CONFIG_BATEAR_LORA_FREQ=915000
+CONFIG_BATEAR_LORA_SYNC_WORD=0x12
+
+# Telemetry heartbeat (jittered ±10% in firmware)
+CONFIG_BATEAR_TELEMETRY_HEARTBEAT_MIN=1
+
+# Direct Wi-Fi transport; no radio add-on required.
+CONFIG_TRIPWIRE_WIFI_DETECTOR=y

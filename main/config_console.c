@@ -336,6 +336,9 @@ static int cmd_set(int argc, char **argv)
     if (argc < 3) {
         printf("Usage: set <key> <value>\n");
         printf("Keys:\n");
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+        printf("  wifi_ssid / wifi_pass — local network (empty SSID = access point)\n");
+#endif
 #if defined(CONFIG_BATEAR_ROLE_DETECTOR) || defined(CONFIG_BATEAR_ROLE_GATEWAY)
         printf("  net_key     — 32 hex chars (AES-128 LoRa key)\n");
         printf("  lora_freq   — frequency in kHz (e.g. 915000, 868000)\n");
@@ -371,6 +374,25 @@ static int cmd_set(int argc, char **argv)
     const char *key = argv[1];
     const char *value = argv[2];
     (void)value;  /* Not all role permutations dispatch on value (cppcheck). */
+
+#ifdef CONFIG_TRIPWIRE_WIFI_DETECTOR
+    if (strcmp(key, "wifi_ssid") == 0 || strcmp(key, "wifi_pass") == 0) {
+        size_t max_len = strcmp(key, "wifi_ssid") == 0 ? 32 : 63;
+        if (strlen(value) > max_len) {
+            printf("Error: Wi-Fi value too long\n");
+            return 1;
+        }
+        nvs_handle_t h;
+        esp_err_t e = nvs_open("detector_wifi", NVS_READWRITE, &h);
+        if (e == ESP_OK) {
+            e = nvs_set_str(h, key, value);
+            if (e == ESP_OK) e = nvs_commit(h);
+            nvs_close(h);
+        }
+        printf("Wi-Fi setting %s: %s (reboot to apply)\n", key, esp_err_to_name(e));
+        return e == ESP_OK ? 0 : 1;
+    }
+#endif
 
     /* net_key — LoRa-only (Detector + Gateway) */
 #if defined(CONFIG_BATEAR_ROLE_DETECTOR) || defined(CONFIG_BATEAR_ROLE_GATEWAY)

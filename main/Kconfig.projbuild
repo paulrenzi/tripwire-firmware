@@ -85,6 +85,17 @@ config BATEAR_AUDIO_DEBUG_LOG
         harmonic ratios, SNR. Use to diagnose why the state machine isn't
         entering ALARM with a known sound source.
 
+config TRIPWIRE_WIFI_DETECTOR
+    bool "Wi-Fi detector with local audio recording stream"
+    depends on BATEAR_ROLE_DETECTOR
+    default n
+    help
+        Replaces LoRa transport with a local TCP stream on port 8765.
+        Carries detection events, sound levels and 16 kHz PCM audio.
+        Configure wifi_ssid / wifi_pass through the serial console.
+        Without an SSID, creates WPA2 network Tripwire-XIAO (password
+        tripwire-local) at 192.168.4.1. For trusted local networks only.
+
 config BATEAR_I2S_MIC_SLOT_RIGHT
     bool "I2S mic: take RIGHT channel (ICS-43434 L/R pin to VDD)"
     default n

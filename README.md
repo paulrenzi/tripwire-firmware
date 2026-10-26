@@ -133,6 +133,11 @@ Batear supports two deployment models — pick whichever fits the site:
 
 ---
 
+## Local XIAO Wi-Fi detector
+
+For direct microphone alerts, sound levels, and WAV recordings on a local computer,
+see [Local Wi-Fi detector and recordings](docs/wifi-detector.md).
+
 ## ⚡ Quick Start (Build from Source)
 
 ```bash
